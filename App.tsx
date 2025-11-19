@@ -46,8 +46,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetchInfo();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchInfo]);
 
   const handleSectionHover = (section: SectionName | null) => {
     setHighlightedSection(section);
@@ -131,7 +130,7 @@ const App: React.FC = () => {
               </div>
 
               {/* Infografía / Línea de Tiempo */}
-              <Timeline data={keyboardInfo.infografia ?? []} />
+              <Timeline data={keyboardInfo.infografia} />
 
               <div className="mt-6 pt-4 border-t border-slate-200">
                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">
@@ -216,7 +215,6 @@ const App: React.FC = () => {
               </InfoCard>
             </div>
 
-            {/* Ciudadanía Digital */}
             <InfoCard
               title="Ciudadanía y Netiqueta"
               icon={<ShieldIcon className="w-8 h-8 text-emerald-600" />}
@@ -241,7 +239,6 @@ const App: React.FC = () => {
               </div>
             </InfoCard>
 
-            {/* Atajos */}
             <InfoCard
               title="Productividad y Eficiencia"
               icon={<LightningIcon className="w-8 h-8 text-amber-500" />}
