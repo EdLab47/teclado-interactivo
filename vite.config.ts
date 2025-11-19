@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  base: '/teclado-interactivo/',   // 👈 NECESARIO PARA GITHUB PAGES
+  // 👇 muy importante para GitHub Pages
+  base: '/teclado-interactivo/',
   plugins: [react()],
   build: {
-    outDir: 'dist',               // ✔️ Carpeta estándar para GitHub Pages
-  }
+    outDir: 'dist', // carpeta donde Vite deja los archivos estáticos
+  },
 })
