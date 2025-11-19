@@ -1,4 +1,4 @@
-                    import React from 'react';
+import React from 'react';
 import { 
     KEYBOARD_MAIN_BLOCK, 
     KEYBOARD_SYSTEM_BLOCK, 
