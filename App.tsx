@@ -6,7 +6,8 @@ import Header from './components/Header';
 import InfoCard from './components/InfoCard';
 import KeyboardDiagram from './components/KeyboardDiagram';
 import TypingPractice from './components/TypingPractice';
-import { LoadingIcon, ErrorIcon, MechanicalKeyboardIcon, MembraneKeyboardIcon, ErgonomicKeyboardIcon, WirelessKeyboardIcon, TipIcon, HistoryIcon, ActivityIcon, KeyboardIcon, IdeaIcon } from './components/icons';
+import Timeline from './components/Timeline';
+import { LoadingIcon, ErrorIcon, MechanicalKeyboardIcon, MembraneKeyboardIcon, ErgonomicKeyboardIcon, WirelessKeyboardIcon, TipIcon, HistoryIcon, ActivityIcon, KeyboardIcon, IdeaIcon, ShieldIcon, LightningIcon } from './components/icons';
 
 const App: React.FC = () => {
     const [keyboardInfo, setKeyboardInfo] = useState<KeyboardInfo | null>(null);
@@ -62,7 +63,7 @@ const App: React.FC = () => {
                 {loading && (
                     <div className="flex flex-col items-center justify-center text-center h-64">
                         <LoadingIcon className="w-12 h-12 mb-4" />
-                        <p className="text-xl font-semibold text-indigo-600">Cargando lección interactiva...</p>
+                        <p className="text-xl font-semibold text-indigo-600">Cargando contenido educativo...</p>
                     </div>
                 )}
                 {error && (
@@ -80,21 +81,33 @@ const App: React.FC = () => {
                 {keyboardInfo && !loading && !error && (
                     <div className="space-y-8">
                         
-                        <InfoCard title="Misión 1: ¡Bienvenido al Mundo del Teclado!" icon={<KeyboardIcon className="w-8 h-8"/>}>
+                        <InfoCard title="Introducción al Teclado" icon={<KeyboardIcon className="w-8 h-8"/>}>
                            <h3 className="text-xl font-bold text-indigo-700 mb-2">{keyboardInfo.definicion.titulo}</h3>
                            <p>{keyboardInfo.definicion.descripcion}</p>
                            <h3 className="text-xl font-bold text-indigo-700 mt-4 mb-2">{keyboardInfo.importancia.titulo}</h3>
                            <p>{keyboardInfo.importancia.descripcion}</p>
                         </InfoCard>
 
-                        <InfoCard title={`Misión 2: Un Viaje en el Tiempo`} icon={<HistoryIcon className="w-8 h-8"/>}>
+                        <InfoCard title="Historia y Evolución" icon={<HistoryIcon className="w-8 h-8"/>}>
                             <h3 className="text-xl font-bold text-indigo-700 mb-2">{keyboardInfo.historia.titulo}</h3>
-                            <div className="space-y-3">
-                                {keyboardInfo.historia.contenido.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+                            <div className="space-y-3 mb-6">
+                                {keyboardInfo.historia.contenido.map((paragraph, index) => <p key={index} className="text-justify">{paragraph}</p>)}
+                            </div>
+                            
+                            {/* Sección de Infografía / Línea de Tiempo */}
+                            <Timeline data={keyboardInfo.infografia} />
+
+                            <div className="mt-6 pt-4 border-t border-slate-200">
+                                <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Fuentes Consultadas:</p>
+                                <ul className="text-xs text-slate-500 list-disc list-inside">
+                                    {keyboardInfo.historia.fuentes.map((fuente, idx) => (
+                                        <li key={idx}>{fuente}</li>
+                                    ))}
+                                </ul>
                             </div>
                         </InfoCard>
 
-                        <InfoCard title="Misión 3: Explorando el Mapa del Teclado" icon={<KeyboardIcon className="w-8 h-8" />} fullWidth>
+                        <InfoCard title="Estructura del Teclado" icon={<KeyboardIcon className="w-8 h-8" />} fullWidth>
                             <p className="mb-4 text-center text-slate-600">{keyboardInfo.partes.introduccion}</p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                                 <div className="md:col-span-1 space-y-2">
@@ -113,7 +126,7 @@ const App: React.FC = () => {
                                     {activeSectionDescription ? (
                                         <p className="text-slate-700 text-center transition-opacity duration-300">{activeSectionDescription}</p>
                                     ) : (
-                                        <p className="text-slate-400 font-semibold text-center">Pasa el cursor sobre una sección de la izquierda para leer su descripción.</p>
+                                        <p className="text-slate-400 font-semibold text-center">Pasa el cursor sobre una sección de la izquierda para leer su descripción técnica.</p>
                                     )}
                                 </div>
                             </div>
@@ -121,12 +134,12 @@ const App: React.FC = () => {
                         </InfoCard>
                         
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            <InfoCard title="Misión 4: El Corazón del Teclado" icon={<IdeaIcon className="w-8 h-8"/>}>
+                            <InfoCard title="Funcionamiento Técnico" icon={<IdeaIcon className="w-8 h-8"/>}>
                                <h3 className="text-xl font-bold text-indigo-700 mb-2">{keyboardInfo.comoFunciona.titulo}</h3>
                                <p>{keyboardInfo.comoFunciona.descripcion}</p>
                             </InfoCard>
 
-                            <InfoCard title={`Misión 4: La Familia de Teclados`} icon={<MechanicalKeyboardIcon className="w-8 h-8" />}>
+                            <InfoCard title="Tipos de Tecnologías" icon={<MechanicalKeyboardIcon className="w-8 h-8" />}>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {keyboardInfo.tipos.teclados.map((tipo) => (
                                         <div key={tipo.nombre} className="flex flex-col items-center text-center p-3 bg-slate-100 rounded-lg">
@@ -139,15 +152,44 @@ const App: React.FC = () => {
                             </InfoCard>
                         </div>
 
+                         {/* NUEVA SECCIÓN: Ciudadanía Digital (NEM) */}
+                         <InfoCard title="Ciudadanía y Netiqueta" icon={<ShieldIcon className="w-8 h-8 text-emerald-600"/>} fullWidth>
+                            <h3 className="text-xl font-bold text-indigo-700 mb-2">{keyboardInfo.ciudadania.titulo}</h3>
+                            <p className="mb-4 italic text-slate-600">"{keyboardInfo.ciudadania.introduccion}"</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {keyboardInfo.ciudadania.reglas.map((item, idx) => (
+                                    <div key={idx} className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
+                                        <h4 className="font-bold text-emerald-800 mb-1">{item.regla}</h4>
+                                        <p className="text-sm text-emerald-700">{item.explicacion}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </InfoCard>
 
-                        <InfoCard title="Misión 5: ¡Manos a la Obra!" icon={<ActivityIcon className="w-8 h-8" />} fullWidth>
+                        {/* NUEVA SECCIÓN: Atajos de Productividad */}
+                        <InfoCard title="Productividad y Eficiencia" icon={<LightningIcon className="w-8 h-8 text-amber-500"/>}>
+                            <h3 className="text-xl font-bold text-indigo-700 mb-2">{keyboardInfo.atajos.titulo}</h3>
+                            <p className="mb-4 text-sm text-slate-600">Domina el teclado para trabajar mejor.</p>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                {keyboardInfo.atajos.lista.map((atajo, idx) => (
+                                    <div key={idx} className="flex flex-col items-center p-3 bg-white border rounded shadow-sm">
+                                        <kbd className="px-2 py-1 mb-2 text-sm font-semibold text-slate-800 bg-slate-100 border border-slate-200 rounded-lg shadow-sm font-mono whitespace-nowrap">
+                                            {atajo.teclas}
+                                        </kbd>
+                                        <span className="text-xs text-center text-slate-500 leading-tight">{atajo.funcion}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </InfoCard>
+
+                        <InfoCard title="Actividades Prácticas" icon={<ActivityIcon className="w-8 h-8" />} fullWidth>
                             <p className="mb-4">{keyboardInfo.actividades.introduccion}</p>
                             <ul className="list-disc list-inside space-y-2 mb-6 bg-slate-100 p-4 rounded-lg">
                                 {keyboardInfo.actividades.lista.map((activity, index) => <li key={index}>{activity}</li>)}
                             </ul>
                         </InfoCard>
 
-                        <InfoCard title="Misión 6: Conviértete en un Profesional" icon={<TipIcon className="w-8 h-8"/>} fullWidth>
+                        <InfoCard title="Mecanografía y Ergonomía" icon={<TipIcon className="w-8 h-8"/>} fullWidth>
                            <h3 className="text-xl font-bold text-indigo-700 mt-4 mb-2">{keyboardInfo.consejos.titulo}</h3>
                            <ul className="space-y-3 mb-6">
                                 {keyboardInfo.consejos.tips.map((tip, index) => (
@@ -170,7 +212,7 @@ const App: React.FC = () => {
                 )}
             </main>
              <footer className="text-center p-6 text-slate-500 text-sm">
-                <p>Creado con React, Tailwind CSS y la magia de Gemini AI.</p>
+                <p>Material educativo generado con asistencia de IA para fines didácticos.</p>
             </footer>
         </div>
     );

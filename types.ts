@@ -28,12 +28,43 @@ export interface TypingTip {
 export interface HistoryInfo {
     titulo: string;
     contenido: string[];
+    fuentes: string[];
+}
+
+export interface TimelineEvent {
+    anio: string;
+    titulo: string;
+    descripcion: string;
+}
+
+export interface InfographicInfo {
+    titulo: string;
+    eventos: TimelineEvent[];
 }
 
 export interface ActivityInfo {
     titulo: string;
     introduccion: string;
     lista: string[];
+}
+
+// Nueva interfaz para Ciudadanía Digital (NEM)
+export interface CitizenshipInfo {
+    titulo: string;
+    introduccion: string;
+    reglas: {
+        regla: string;
+        explicacion: string;
+    }[];
+}
+
+// Nueva interfaz para Atajos (Productividad)
+export interface ShortcutInfo {
+    titulo: string;
+    lista: {
+        teclas: string;
+        funcion: string;
+    }[];
 }
 
 export interface KeyboardInfo {
@@ -50,6 +81,7 @@ export interface KeyboardInfo {
         descripcion: string;
     };
     historia: HistoryInfo;
+    infografia: InfographicInfo;
     tipos: {
         titulo: string;
         teclados: KeyboardType[];
@@ -68,6 +100,9 @@ export interface KeyboardInfo {
         titulo: string;
         descripcion: string;
     };
+    // Nuevas secciones
+    ciudadania: CitizenshipInfo;
+    atajos: ShortcutInfo;
 }
 
 export interface KeyLayout {

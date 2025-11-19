@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export const KeyboardIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
@@ -110,20 +111,31 @@ export const ActivityIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => 
     </svg>
 );
 
-// Fix: Add IdeaIcon component (can be the same as TipIcon)
+// Fix: Add IdeaIcon component
 export const IdeaIcon = TipIcon;
 
+// Icono de Escudo para Ciudadanía Digital
+export const ShieldIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+);
+
+// Icono de Rayo para Atajos
+export const LightningIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+);
 
 // Keyboard Diagram Icons
 
-// Fix: Add WindowsIcon component
 export const WindowsIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" {...props}>
         <path d="M3 11.5h8.5v-8h-8.5v8zm0 1h8.5v8h-8.5v-8zm9.5-9.5v8h8.5v-8h-8.5zm0 9.5h8.5v8h-8.5v-8z" />
     </svg>
 );
 
-// Fix: Add MenuIcon component
 export const MenuIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -133,7 +145,6 @@ export const MenuIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     </svg>
 );
 
-// Fix: Add EnterIcon component
 export const EnterIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M18 15v-6a2 2 0 0 0-2-2H6" />
@@ -141,7 +152,6 @@ export const EnterIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     </svg>
 );
 
-// Fix: Add ShiftArrowIcon component
 export const ShiftArrowIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M12 8V20" />
@@ -149,7 +159,6 @@ export const ShiftArrowIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) =
     </svg>
 );
 
-// Fix: Add TabIcon component
 export const TabIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M7 15l-4-4 4-4" />
@@ -157,7 +166,6 @@ export const TabIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     </svg>
 );
 
-// Fix: Add BackspaceIcon component
 export const BackspaceIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z" />
